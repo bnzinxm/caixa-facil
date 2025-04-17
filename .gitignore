@@ -1,0 +1,40 @@
+# Node
+node_modules
+.env
+.env.*.local
+dist
+build
+coverage
+*.log
+
+# macOS
+.DS_Store
+
+# Prisma
+prisma/migrations/
+.prisma/
+
+# Vite
+.vite
+
+# Expo
+.expo
+.expo-shared
+
+# Docker
+docker-data
+pgdata
+redis-data
+
+# VSCode
+.vscode
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+Thumbs.db

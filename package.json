@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "private": "true",
+  "workspaces": [
+    "apps/*",
+    "packages/"
+  ],
+  "version": "1.0.0",
+  "description": "o maior sistema pdv do brasil.",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev:api": "pnpm --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:mobile": "pnpm --filter mobile start",
+    "dev": "concurrently \"pnpm dev:api\" \"pnpm dev:web\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
