@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3333;
 
 const start = async () => {
      await app.listen(PORT, () => {
-          console.log(`API Rodando na porta: ${PORT}`);
+          console.log(`🚀 API Rodando na porta: ${PORT}`);
      })
 }
 
