@@ -16,6 +16,7 @@ export const MarketAuthController = {
         data: result,
       });
     } catch (err: any) {
+        console.log(err);
       return res.status(400).json({
         error: err.message || 'Erro ao registrar mercado.',
       });

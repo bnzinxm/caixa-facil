@@ -4,6 +4,7 @@ import path from 'path';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { db } from './config/database';
+import marketAuthRoutes from './routes/auth/marketAuth.routes';
 
 // instances
 
@@ -20,6 +21,9 @@ app.use(rateLimit({
      windowMs: 15 * 60 * 1000, // 15 minutos
      max: 100, // limita a 100 requisições por IP
 }));
+
+// outras rotas
+app.use("/api/v2/auth", marketAuthRoutes);
 
 // rota inicial de teste.
 

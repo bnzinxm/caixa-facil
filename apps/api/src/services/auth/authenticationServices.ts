@@ -16,12 +16,17 @@ export class AuthenticationService {
 
             const hashedPassword = await hash(password, 10);
 
-            const [result] = await db.query("INSERT INTO markets (nome, email, password) VALUES (?, ?, ?)", [nome, email, hashedPassword]);
+            const [result] = await db.query("INSERT INTO markets (name, email, password) VALUES (?, ?, ?)", [nome, email, hashedPassword]);
 
             return {
-                id: (result as any).insertId,
-                email,
-            };
+                success: true,
+                message: '🛒 Novo mercado registrado com sucesso!',
+                market: {
+                  id: (result as any).insertId,
+                  email,
+                },
+                timestamp: new Date().toISOString(),
+              };
         },
 
         Authenticate: async function ({ email, password }: MarketCredentials) {
