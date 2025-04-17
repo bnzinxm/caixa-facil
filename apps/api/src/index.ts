@@ -1,4 +1,4 @@
-import express, { Response, Request } from 'express';
+import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import helmet from 'helmet';
@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 3333;
 const start = async () => {
      try {
           // Teste de conexão com o banco
-          const connection = await db.conne();
+          const connection = await db.getConnection();
           await connection.ping();
           connection.release();
           console.log('✅ Conexão com o banco de dados estabelecida com sucesso!');
