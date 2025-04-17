@@ -1,6 +1,7 @@
 # Node
 node_modules
 .env
+.env.sample
 .env.*.local
 dist
 build
