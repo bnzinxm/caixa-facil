@@ -42,7 +42,7 @@ const start = async () => {
      }
 
      await app.listen(PORT, () => {
-          console.log(`API Rodando na porta: ${PORT}`);
+          console.log(`API Rodando em: http://localhost:${PORT}/`);
      })
 }
 
