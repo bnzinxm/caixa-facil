@@ -1,8 +1,9 @@
-import express from 'express';
+import express, { Response, Request } from 'express';
 import cors from 'cors';
 import path from 'path';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import { db } from './config/database';
 
 // instances
 
@@ -29,8 +30,19 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3333;
 
 const start = async () => {
+     try {
+          // Teste de conexão com o banco
+          const connection = await db.conne();
+          await connection.ping();
+          connection.release();
+          console.log('✅ Conexão com o banco de dados estabelecida com sucesso!');
+     } catch (error) {
+          console.error('❌ Erro ao conectar com o banco de dados:', error);
+          process.exit(1); // Encerra a aplicação se der erro
+     }
+
      await app.listen(PORT, () => {
-          console.log(`🚀 API Rodando na porta: ${PORT}`);
+          console.log(`API Rodando na porta: ${PORT}`);
      })
 }
 
