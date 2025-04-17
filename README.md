@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./md_assets/bytesoft%20(light).png" alt="ByteSoft Logo" height="120"/>
+  <img src="./md_assets/bytesoft%20(light).png" alt="ByteSoft Logo" height=""/>
 </p>
 
 <p align="center">
