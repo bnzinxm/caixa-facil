@@ -1,0 +1,42 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsx --watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "build:prod": "tsc --build --configuration production",
+    "lint": "npx eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "npx eslint 'src/**/*.{ts,tsx}' --fix",
+    "format": "npx prettier --write 'src/**/*.{ts,tsx}'",
+    "test": "npx jest",
+    "test:watch": "npx jest --watch",
+    "coverage": "npx jest --coverage",
+    "build:docker": "docker build -t caixafacil-api .",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:exec": "docker-compose exec api bash"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "mysql2": "^3.14.0",
+    "prisma": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}
