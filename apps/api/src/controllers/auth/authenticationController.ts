@@ -38,6 +38,7 @@ export const MarketAuthController = {
         timestamp: new Date().toISOString(),
       });
     } catch (error: any) {
+      console.log(error);
       // retornar erro em caso de falha na autenticação
       return res.status(400).json({
         success: false,
