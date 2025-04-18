@@ -30,7 +30,35 @@ export class AuthenticationService {
         },
 
         Authenticate: async function ({ email, password }: MarketCredentials) {
-            // i'll add logic here at any moment.
+            // primeiro, verificar se o mercado existe.
+
+            const [result] = await db.query(
+                "SELECT id, email, password FROM markets WHERE email = ?",
+                [email]
+            );
+
+            const market = (result as any[])[0];
+
+            if (!market) {
+                throw new Error("Mercado não encontrado!");
+            }
+
+            // depois, verificar se a senha está correta.
+            const passwordMatches = await compare(password, market.password);
+
+            if (!passwordMatches) {
+                throw new Error("Senha incorreta!");
+            }
+
+            // gerar o token jwt
+
+            const token = sign(
+                { market_id: market.id, email: market.email },
+                process.env.JWT_SECRET as string,
+                { expiresIn: '7d' } // token expira em 7 dias.
+            );
+
+            return { token };
         },
 
         Delete: async function (id: number) {
