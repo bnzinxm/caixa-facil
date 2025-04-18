@@ -114,7 +114,7 @@ caixafacil-v2/
 ## 🌐 Links
 
 - 🔗 Site oficial: [https://caixafacil.org](https://caixafacil.org)
-- 🧠 Projeto e arquitetura: [@bnzin_xm](https://instagram.com/@bnzinxm)
+- 🧠 Projeto e arquitetura: [@bnzin_xm](https://instagram.com/@bnzin_xm)
 - 🏢 Desenvolvido por: **ByteSoft Inc.**
 
 ---
