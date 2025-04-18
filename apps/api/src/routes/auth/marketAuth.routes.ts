@@ -5,5 +5,6 @@ import { MarketAuthController } from '@api/controllers/auth/authenticationContro
 const router = Router();
 
 router.post("/register", MarketAuthController.register);
+router.post("/login", MarketAuthController.login);
 
 export default router;
