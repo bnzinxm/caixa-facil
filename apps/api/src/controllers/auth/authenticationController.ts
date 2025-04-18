@@ -32,9 +32,20 @@ export const MarketAuthController = {
 
       // retornar sucesso com o token JWT
       return res.status(200).json({
-        success: true,
-        message: '🛒 Mercado autenticado com sucesso!',
-        token: result.token, // o token retornado do serviço de autenticação
+        status: '✅ SUCCESS',
+        code: 200,
+        message: '🛒 Autenticação concluída com sucesso!',
+        description: 'O mercado foi autenticado e os tokens foram gerados corretamente.',
+        tokens: {
+          access_token: result.tokens.accessToken,
+          refresh_token: result.tokens.refreshToken,
+          expires_in: '7 Dias',
+        },
+        market: {
+          id: result.market.id,
+          nome: result.market.nome,
+          email: result.market.email,
+        },
         timestamp: new Date().toISOString(),
       });
     } catch (error: any) {

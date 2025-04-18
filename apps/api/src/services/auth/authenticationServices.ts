@@ -4,6 +4,7 @@ import { sign } from 'jsonwebtoken';
 import { db } from '@api/config/database';
 import { MarketCredentials, UserCredentials } from '@api/types/auth/authentication';
 import logger from '@api/config/logger';
+import { generateTokens } from '@api/utils/tokenizer';
 
 
 export class AuthenticationService {
@@ -57,14 +58,39 @@ export class AuthenticationService {
 
             // gerar o token jwt
 
-            const token = sign(
-                { market_id: market.id, email: market.email },
-                process.env.JWT_SECRET as string,
-                { expiresIn: '7d' } // token expira em 7 dias.
+            const tokens = generateTokens({ id: market.id, email: market.email });
+
+            // armazena ou atualiza o refresh token no banco de dados
+
+            const [existing] = await db.query(
+                "SELECT id FROM market_tokens WHERE market_id = ?",
+                [tokens.refreshToken, market.id]
             );
 
+            if ((existing as any[]).length > 0) {
+                await db.query(
+                    "UPDATE market_tokens SET token = ? WHERE market_id = ?",
+                    [tokens.refreshToken, market.id]
+                );
+            } else {
+                await db.query(
+                    "INSERT INTO market_tokens (market_id, token) VALUES (?, ?)",
+                    [market.id, tokens.refreshToken]
+                );
+            }
+
             logger.info(`Mercado autorizado com sucesso: ${email}`);
-            return { token };
+            return {
+                success: true,
+                message: '✅ Autenticação realizada com sucesso.',
+                tokens,
+                market: {
+                    id: market.id,
+                    nome: market.name,
+                    email: market.email,
+                },
+                timestamp: new Date().toISOString(),
+            };
         },
 
         Delete: async function (id: number) {
