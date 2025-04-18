@@ -5,10 +5,13 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { db } from './config/database';
 import marketAuthRoutes from './routes/auth/marketAuth.routes';
+import { setupSwagger } from './config/swagger';
 
 // instances
 
 const app = express();
+
+setupSwagger(app);
 
 app.use(cors());
 app.use(helmet());
