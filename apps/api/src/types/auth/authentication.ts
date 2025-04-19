@@ -1,15 +1,15 @@
 export interface MarketCredentials {
     email: string;
     password: string;
-    nome: string;
-    
+
+    // nome: string;
     // cnpj: string;
     // endereco: string;
     // < Futuramente adicionarei mais coisas aqui. >
 }
 
 export interface UserCredentials {
-    fullName: string;
+    // fullName: string;
     email: string;
     password: string;
 

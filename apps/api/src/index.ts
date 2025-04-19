@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { db } from './config/database';
 import marketAuthRoutes from './routes/auth/marketAuth.routes';
+import userAuthRoutes from './routes/auth/userAuth.routes';
 import { setupSwagger } from './config/swagger';
 
 // instances
@@ -26,11 +27,13 @@ app.use(rateLimit({
 }));
 
 // outras rotas
-app.use("/api/v2/auth", marketAuthRoutes);
+app.use("/api/v2/auth/markets", marketAuthRoutes);
+app.use("/api/v2/auth/users", userAuthRoutes);
+
 
 // rota inicial de teste.
 
-app.get("/", (req, res) => {
+app.get("/api/v2", (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'welcome.html'));
 });
 
@@ -49,7 +52,7 @@ const start = async () => {
      }
 
      await app.listen(PORT, () => {
-          console.log(`API Rodando em: http://localhost:${PORT}/`);
+          console.log(`API Rodando em: http://localhost:${PORT}/api/v2/`);
      })
 }
 
